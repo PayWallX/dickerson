@@ -1,1 +1,34 @@
+def chiffrer_cesar(texte, decalage): #créatiion de la fonction qui va chiffrer
+    resultat = "" #le résultat que sera retourné
+
+    for lettre in texte: #ça va prendre en compte chaque lettre du message une par une ex " moi" ça va donner "m" puis "o" puis"i"
+        if lettre >= 'a' and lettre <= 'z': #ça prend en compte seulement si c'est une lettre et pas les caractère spéciaux
+            nouvelle_lettre = chr((ord(lettre) - ord('a') + decalage) % 26 + ord('a')) # cette la ligne la plus importante car c'est elle qui va chiffrer la donné , chr vas transformer tout les chiffre en, lettre . ord lui fais l'inverse il transforme les lettre en chiffre puis après ça on ajoute le décalage et suite à ça %26 + ord'a' vas faire en sorte que lorque que Z apparait on repars direct avec A ..
+            resultat += nouvelle_lettre #si tout ça fonctionne ça resort le nouvelle lettre
+
+        elif lettre >= 'A' and lettre <= 'Z':  #la même fonction seulement pour les majuscule 
+            nouvelle_lettre = chr((ord(lettre) - ord('A') + decalage) % 26 + ord('A') )
+            resultat += nouvelle_lettre
+
+        else:
+            resultat += lettre #sinon ça laisse tel quel dans le cas ou c un caractère spécial
+            
+
+    return resultat #affiche le résultat
+
+
+def dechiffrer_cesar(texte_chiffre, decalage): #fonction pour déchiffrer 
+    return chiffrer_cesar(texte_chiffre, -decalage) # on prend exactement le code pour chiffrer seulement on enleve le décalage 
+
+
+
+# ====== TESTS ======
+texte = "Je suis un zombie!"
+decalage = 2
+
+chiffre = chiffrer_cesar(texte, decalage)
+print("Chiffré   :", chiffre)
+
+dechiffre = dechiffrer_cesar(chiffre, decalage)
+print("Déchiffré :", dechiffre)
 
